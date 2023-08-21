@@ -17,20 +17,24 @@ public class AccessController { // REST controller for access control
   public ResponseEntity<String> getAllResources() {
     return new ResponseEntity<String>("get method which returns all resources", HttpStatus.OK);
   }
+
   @GetMapping("/get/{id}") // GET method to get a single resource by id
   public ResponseEntity<String> getResource(@PathVariable int id) {
     return new ResponseEntity<String>(
         "get method which returns single resource by id", HttpStatus.OK);
   }
+
   @PostMapping("/set") // POST method to insert resource
   public ResponseEntity<String> postResource() {
     return new ResponseEntity<String>(
         "post method which sends resource from client", HttpStatus.OK);
   }
+
   @PutMapping("/update/{id}") // PUT method to update the existing resource
   public ResponseEntity<String> updateResource(@PathVariable int id) {
     return new ResponseEntity<String>("put method to update the resource", HttpStatus.OK);
   }
+
   @DeleteMapping("/delete/{id}") // DELETE method to delete the resource by id
   public ResponseEntity<String> deleteResource(@PathVariable int id) {
     return new ResponseEntity<String>("delete method which deletes resources", HttpStatus.OK);
