@@ -9,4 +9,4 @@ gotech:
 spring:
   mvc:
     pathmatch:
-      matching-strategy: ant_path_matcher
+      matching-strategy: ant_path_matcher #to resolve error related to swagger

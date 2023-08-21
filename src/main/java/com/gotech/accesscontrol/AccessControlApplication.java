@@ -9,7 +9,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
-@EnableSwagger2
+
+@EnableSwagger2 // enable to use swagger ui for this application
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class AccessControlApplication {
   public static void main(String[] args) {
@@ -20,7 +21,10 @@ public class AccessControlApplication {
   public Docket productApi() {
     return new Docket(DocumentationType.SWAGGER_2)
         .select()
-        .apis(basePackage("com.gotech.accesscontrol.controller"))
+        .apis(
+            basePackage(
+                "com.gotech.accesscontrol.controller")) // base package set as a controller for ui
+                                                        // documentation
         .build();
   }
 }

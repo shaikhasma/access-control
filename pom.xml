@@ -43,13 +43,13 @@
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
+			<artifactId>springfox-boot-starter</artifactId> <!-- starter dependency for swagger implementation -->
 			<version>3.0.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
 		<dependency>
 			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
+			<artifactId>springfox-swagger-ui</artifactId> <!-- dependency for swagger ui -->
 			<version>3.0.0</version>
 		</dependency>
 	</dependencies>
@@ -70,7 +70,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
+				<artifactId>maven-surefire-plugin</artifactId> <!-- to skip test error during startup -->
 				<version>2.22.2</version>
 				<configuration>
 					<skipTests>true</skipTests>
