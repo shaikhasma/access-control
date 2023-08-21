@@ -1,0 +1,7 @@
+server:
+  port : 8080
+  servlet:
+    context-path : /access-control
+
+gotech:
+  base_url: localhost:8080
