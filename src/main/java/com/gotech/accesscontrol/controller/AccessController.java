@@ -15,27 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccessController {
     @GetMapping("/getAll")
     public ResponseEntity<String> getAllResources() {
-        return new ResponseEntity<String>("get method which returns all resources", HttpStatus.OK);
+        return new ResponseEntity<>("get method which returns all resources", HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
     public ResponseEntity<String> getResource(@PathVariable int id) {
-        return new ResponseEntity<String>("get method which returns single resource by id", HttpStatus.OK);
+        return new ResponseEntity<>("get method which returns single resource by id", HttpStatus.OK);
     }
 
     @PostMapping("/set")
     public ResponseEntity<String> postResource() {
-        return new ResponseEntity<String>(
+        return new ResponseEntity<>(
                 "post method which sends resource from client", HttpStatus.OK);
     }
 
     @PatchMapping("/update/{id}")
     public ResponseEntity<String> updateResource(@PathVariable int id) {
-        return new ResponseEntity<String>("patch method to update the resource", HttpStatus.OK);
+        return new ResponseEntity<>("patch method to update the resource", HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteResource(@PathVariable int id) {
-        return new ResponseEntity<String>("delete method which deletes resources", HttpStatus.OK);
+        return new ResponseEntity<>("delete method which deletes resources", HttpStatus.OK);
     }
 }
