@@ -1,7 +1,12 @@
 server:
-  port : 8080
+  port : 5051
   servlet:
     context-path : /access-control
 
 gotech:
-  base_url: localhost:8080
+  base_url: localhost:5051
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
