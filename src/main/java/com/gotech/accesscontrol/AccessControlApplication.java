@@ -1,5 +1,6 @@
 package com.gotech.accesscontrol;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -13,6 +14,8 @@ import static springfox.documentation.builders.RequestHandlerSelectors.basePacka
 @EnableSwagger2 // enable to use swagger ui for this application
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class AccessControlApplication {
+    @Value("${controller.path}")
+    private String path;
   public static void main(String[] args) {
     SpringApplication.run(AccessControlApplication.class, args);
   }
@@ -23,7 +26,7 @@ public class AccessControlApplication {
         .select()
         .apis(
             basePackage(
-                "com.gotech.accesscontrol.controller")) // base package set as a controller for ui
+                path)) // base package set as a controller for ui
                                                         // documentation
         .build();
   }
