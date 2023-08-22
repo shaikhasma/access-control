@@ -5,3 +5,11 @@ server:
 
 gotech:
   base_url: localhost:8080
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher #to resolve error related to swagger
+
+controller:
+  path: "com.gotech.accesscontrol.controller"
