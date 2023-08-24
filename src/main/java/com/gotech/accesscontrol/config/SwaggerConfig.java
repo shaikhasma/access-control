@@ -1,4 +1,4 @@
-package config;
+package com.gotech.accesscontrol.config;
 
 import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
 
