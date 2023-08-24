@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
-public class SignUpResponse {
+public class Response {
 
     @JsonProperty("status-code")
     private String statusCode;
