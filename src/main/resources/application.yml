@@ -1,15 +1,27 @@
 server:
-  port : 8080
+  port: 8080
   servlet:
-    context-path : /access-control
+    context-path: /access-control
 
 gotech:
   base_url: localhost:8080
+
+controller:
+  path: "com.gotech.accesscontrol.controller"
 
 spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher #to resolve error related to swagger
+  datasource:
+    url: jdbc:mysql://localhost:3306/signup
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: system
+    password: manager
+    dialect: org.hibernate.dialect.MySQL8Dialect
+  jpa:
+    hibernate.ddl-auto: update
 
-controller:
-  path: "com.gotech.accesscontrol.controller"
+hibernate:
+  id:
+    new_generator_mapping: true
