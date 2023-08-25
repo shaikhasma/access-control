@@ -1,57 +1,48 @@
 package com.gotech.accesscontrol.Entity;
 
 import com.gotech.accesscontrol.constant.UserType;
-import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_registration")
+@Table(name = "txn_user",schema = "gts_profile")
 public class User {
   @Id
-  @SequenceGenerator(
-      name = "id_sequence",
-      sequenceName = "id_sequence",
-      initialValue = 1,
-      allocationSize = 1)
-  @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_id_generator")
-  private int id;
+  @GeneratedValue(generator="uuid2")
+  @GenericGenerator(name="uuid2", strategy = "uuid2")
+  @Column (name = "user_id", columnDefinition = "VARCHAR(36)")
+  private String userId;
 
-  @NotNull
-  @Column(name = "first_name")
+  @Column(name = "first_name",nullable = false)
   private String firstName;
 
-  @NotNull
-  @Column(name = "last_name")
+  @Column(name = "last_name",nullable = false)
   private String lastName;
 
-  @NotNull
-  @Column(name = "mobile_number", unique = true)
+  @Column(name = "mobile_number", unique = true,nullable = false)
   private String mobileNumber;
 
-  @NotNull
-  @Column(unique = true)
+  @Column(unique = true,nullable = false)
   private String emailId;
 
-  @NotNull @Column private String password;
+  @Column(nullable = false)
+  private String password;
 
-  @NotNull
-  @Column(name = "user_type")
+  @Column(name = "user_type",nullable = false)
   @Enumerated(EnumType.STRING)
   private UserType userType;
 }
