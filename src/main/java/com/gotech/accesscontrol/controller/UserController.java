@@ -2,7 +2,6 @@ package com.gotech.accesscontrol.controller;
 
 import com.gotech.accesscontrol.model.dto.ChangePasswordRequest;
 import com.gotech.accesscontrol.model.dto.Response;
-import com.gotech.accesscontrol.model.dto.SignUpRequest;
 import com.gotech.accesscontrol.model.dto.UserRequest;
 import com.gotech.accesscontrol.service.UserService;
 import io.swagger.annotations.Api;
@@ -21,18 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
-
-  @Autowired private UserService userService;
-
-  /**
-   * @param signUpRequest
-   * @return
-   */
-  @ApiOperation("/sign-up")
-  @GetMapping("/sign-up")
-  public Response signUP(SignUpRequest signUpRequest) {
-    return new Response(HttpStatus.OK.toString(), "User SignUp Successfully");
-  }
+  @Autowired
+  private UserService userService;
 
   @ApiOperation("/change-password")
   @GetMapping("/change-password")

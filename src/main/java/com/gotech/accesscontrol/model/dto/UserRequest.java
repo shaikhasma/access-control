@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class UserRequest {
 
   @JsonIgnore
-  private int id;
+  private String id;
 
   private String firstName;
 

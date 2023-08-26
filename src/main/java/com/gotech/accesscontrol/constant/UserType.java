@@ -1,7 +1,6 @@
 package com.gotech.accesscontrol.constant;
 
 public enum UserType {
-
   ADMIN("Admin"),
   ACCOUNTANT("Accountant"),
   WAREHOUSE_MANAGER("Warehouse Manager"),
@@ -18,5 +17,4 @@ public enum UserType {
   public String getUserType(){
     return this.userType;
   }
-
 }
