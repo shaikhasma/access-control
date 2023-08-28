@@ -11,10 +11,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @Configuration
-public class SwaggerConfig { // Swagger Ui configuration
+public class SwaggerConfig { // <--- Swagger Ui configuration
+
+  //getting path of controller package from application.yaml file
   @Value("${controller.path}")
   private String path;
 
+  //setting properties of swagger documentation using Docket
   @Bean
   public Docket productApi() {
     return new Docket(DocumentationType.SWAGGER_2).select().apis(basePackage(path)).build();

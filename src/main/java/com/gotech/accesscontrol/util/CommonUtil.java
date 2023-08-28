@@ -5,8 +5,10 @@ import com.gotech.accesscontrol.model.dto.UserRequest;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CommonUtil {    // convertor of types
-    public User toUser(UserRequest userRequest) {     // converts UserRequest to user
+public class CommonUtil {    // <---- convertor of DTOs and Models
+
+    // converts UserRequest to user and returns user
+    public User toUser(UserRequest userRequest) {
         return User.builder()
                 .firstName(userRequest.getFirstName())
                 .lastName(userRequest.getLastName())

@@ -22,8 +22,10 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Table(name = "txn_user",schema = "gts_profile")
 public class User {
+
+  // Universally unique identifier generation with uuid v2
   @Id
-  @GeneratedValue(generator="uuid2")  // Universally unique identifier generation
+  @GeneratedValue(generator="uuid2")
   @GenericGenerator(name="uuid2", strategy = "uuid2")
   @Column (name = "user_id", columnDefinition = "VARCHAR(36)")
   private String userId;
