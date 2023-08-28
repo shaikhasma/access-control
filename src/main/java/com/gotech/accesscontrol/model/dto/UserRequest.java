@@ -11,21 +11,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequest {
+public class UserRequest {      // request dto
 
   @JsonIgnore
   private String id;
-
   private String firstName;
-
   private String lastName;
-
   private String mobileNumber;
-
   private String emailId;
-
   private String password;
-
   private UserType userType;
 
 }

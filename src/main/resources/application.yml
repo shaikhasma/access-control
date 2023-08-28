@@ -21,7 +21,3 @@ spring:
     dialect: org.hibernate.dialect.MySQL8Dialect
   jpa:
     hibernate.ddl-auto: update
-
-hibernate:
-  id:
-    new_generator_mapping: true

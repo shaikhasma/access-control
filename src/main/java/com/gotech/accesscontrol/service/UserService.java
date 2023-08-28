@@ -14,8 +14,8 @@ public class UserService {
   @Autowired
   CommonUtil commonUtil;
 
-  public String saveUser(UserRequest userRequest) {
-    userRepo.save(commonUtil.toUser(userRequest));
+  public String saveUser(UserRequest userRequest) {  // takes userRequest, saves it & returns success message
+    userRepo.save(commonUtil.toUser(userRequest));  // converts userRequest into user before saving
     return "User created successfully. ";
   }
 }
