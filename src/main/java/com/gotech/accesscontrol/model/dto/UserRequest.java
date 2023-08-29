@@ -11,10 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequest {      // <---- request dto to get user data from client
+public class UserRequest {
 
-  @JsonIgnore
-  private String id;
   private String firstName;
   private String lastName;
   private String mobileNumber;

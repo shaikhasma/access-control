@@ -23,7 +23,6 @@ import javax.persistence.Table;
 @Table(name = "txn_user",schema = "gts_profile")
 public class User {
 
-  // Universally unique identifier generation with uuid v2
   @Id
   @GeneratedValue(generator="uuid2")
   @GenericGenerator(name="uuid2", strategy = "uuid2")

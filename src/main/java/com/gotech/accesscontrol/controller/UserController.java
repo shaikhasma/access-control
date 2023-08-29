@@ -3,7 +3,7 @@ package com.gotech.accesscontrol.controller;
 import com.gotech.accesscontrol.model.dto.ChangePasswordRequest;
 import com.gotech.accesscontrol.model.dto.Response;
 import com.gotech.accesscontrol.model.dto.UserRequest;
-import com.gotech.accesscontrol.service.UserService;
+import com.gotech.accesscontrol.service.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class UserController {
   @Autowired
-  private UserService userService;
+  private UserServiceImpl userServiceImpl;
 
   @ApiOperation("/change-password")
   @GetMapping("/change-password")
@@ -32,6 +32,6 @@ public class UserController {
   @ApiOperation("- register new user")
   @PostMapping("/register")
   public Response registerUser(@RequestBody UserRequest userRequest) {
-    return new Response(HttpStatus.CREATED.toString(), userService.saveUser(userRequest));
+    return userServiceImpl.saveUser(userRequest);
   }
 }
