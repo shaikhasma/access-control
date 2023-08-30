@@ -2,8 +2,7 @@ package com.gotech.accesscontrol.service;
 
 import com.gotech.accesscontrol.Entity.User;
 import com.gotech.accesscontrol.config.Log4j2Config;
-import com.gotech.accesscontrol.constant.ExceptionMessages;
-import com.gotech.accesscontrol.constant.Fields;
+import com.gotech.accesscontrol.constant.Constants;
 import com.gotech.accesscontrol.exception.InvalidUserException;
 import com.gotech.accesscontrol.exception.UserAlreadyExistException;
 import com.gotech.accesscontrol.model.dto.Response;
@@ -15,10 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import static com.gotech.accesscontrol.constant.LogsMessageConstants.createLog;
-import static com.gotech.accesscontrol.constant.LogsMessageConstants.duplicateUserLog;
-import static com.gotech.accesscontrol.constant.LogsMessageConstants.invalidUserLog;
-import static com.gotech.accesscontrol.constant.LogsMessageConstants.saveLog;
 import static com.gotech.accesscontrol.util.CommonUtil.toUser;
 
 @Service
@@ -30,29 +25,36 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ValidateUser validateUser;
 
-    /* takes userRequest & converts it into user
-    then saves user into repo & returns success message. */
+    /**
+     * validates & save user in system.
+     */
     @Override
     public Response saveUser(UserRequest userRequest) {
         User user = toUser(userRequest);
+        if (this.userValidation(user).equals(Constants.valid)) {
+            userRepo.save(user);
+            serviceLogger.info("user saved successfully. " + user);
+        }
+        return new Response(HttpStatus.CREATED.toString(), "user created successfully. ");
+    }
+
+    private String userValidation(User user) {
+        String validationMessage = "";
         String validate = validateUser.isValid(user);
-        if (validate.equals(Fields.valid)) {
-            if (validateUser.isUserAlreadyExist(user).equals(Fields.empty)) {
-                userRepo.save(user);
-                serviceLogger.info(saveLog + user);
+        if (validate.equals(Constants.valid)) {
+            if (validateUser.isUserAlreadyExist(user).equals(Constants.empty)) {
+                serviceLogger.info(Constants.validMessage + user);
+                validationMessage = Constants.valid;
             } else {
-                UserAlreadyExistException exception =
-                        new UserAlreadyExistException(duplicateUserLog + user);
-                exception.printStackTrace();
-                serviceLogger.error(duplicateUserLog + user);
-                return new Response(HttpStatus.CONFLICT.toString(), ExceptionMessages.userAlreadyExist);
+                serviceLogger.error(Constants.duplicate + user);
+                validationMessage = Constants.duplicate;
+                throw new UserAlreadyExistException(Constants.duplicate + user);
             }
         } else {
-            InvalidUserException exception = new InvalidUserException(invalidUserLog + user);
-            exception.printStackTrace();
-            serviceLogger.error(invalidUserLog + user);
-            return new Response(HttpStatus.UNPROCESSABLE_ENTITY.toString(), validate);
+            validationMessage = Constants.invalid + validate + user;
+            serviceLogger.error(validationMessage);
+            throw new InvalidUserException(validationMessage);
         }
-        return new Response(HttpStatus.CREATED.toString(), createLog);
+        return validationMessage;
     }
 }

@@ -1,7 +1,6 @@
 package com.gotech.accesscontrol.constant;
 
-
-public final class ExceptionMessages {
+public final class Constants {
     public static final String invalidFirstName =
             "user's first name should not contain any special character or digits. "
                     + "only alphabets and whitespace is allowed & first letter should be capital only. "
@@ -24,5 +23,23 @@ public final class ExceptionMessages {
     public static final String userAlreadyExist =
             "user is already exist in database for provided details. ";
     public static final String invalidUser =
-            "user should be valid. any field can not be empty / blank / null. ";
+            "every field of user should be valid. should not be empty / blank / null. ";
+    public static final String firstName = "first name ";
+    public static final String lastName = "last name ";
+    public static final String contactNumber = "contact number ";
+    public static final String emailId = "email id ";
+    public static final String password = "password ";
+    public static final String validMessage = "User is valid ";
+    public static final String valid = " valid";
+    public static final String duplicate = "duplicate user is present in database for ";
+    public static final String notDuplicate = " no duplicate user found ";
+    public static final String empty = "empty";
+    public static final String notEmpty = "not empty";
+    public static final String invalid = "invalid ";
+    public static final String for_ = "for : ";
+    public static final String emailPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+    public static final String mobileNoPattern = "^(\\+91[\\-\\s]?)?[0]?(91)?[789]\\d{9}$";
+    public static final String namePattern = "^[a-zA-Z](?=.{1,19}$)[A-Za-z]*(?:\\h+[A-Z][A-Za-z]*)*$";
+    //public static final String namePattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$";
+    public static final String passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
 }

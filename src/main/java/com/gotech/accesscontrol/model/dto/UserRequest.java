@@ -1,7 +1,6 @@
 package com.gotech.accesscontrol.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gotech.accesscontrol.constant.UserType;
+import com.gotech.accesscontrol.constant.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
