@@ -39,7 +39,6 @@ public final class Constants {
     public static final String for_ = "for : ";
     public static final String emailPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
     public static final String mobileNoPattern = "^(\\+91[\\-\\s]?)?[0]?(91)?[789]\\d{9}$";
-    public static final String namePattern = "^[a-zA-Z](?=.{1,19}$)[A-Za-z]*(?:\\h+[A-Z][A-Za-z]*)*$";
-    //public static final String namePattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$";
+    public static final String namePattern = "^[a-zA-Z](?=.{0,19}$)[A-Za-z]*(?:\\h+[A-Z][A-Za-z]*)*$";
     public static final String passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
 }
