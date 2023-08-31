@@ -2,7 +2,6 @@ package com.gotech.accesscontrol.util;
 
 import com.gotech.accesscontrol.Entity.User;
 import com.gotech.accesscontrol.config.Log4j2Config;
-import com.gotech.accesscontrol.constant.Constants;
 import com.gotech.accesscontrol.repository.UserRepo;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,64 +9,85 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static com.gotech.accesscontrol.constant.Constants.contactNumber;
+import static com.gotech.accesscontrol.constant.Constants.duplicate;
+import static com.gotech.accesscontrol.constant.Constants.emailId;
+import static com.gotech.accesscontrol.constant.Constants.empty;
+import static com.gotech.accesscontrol.constant.Constants.firstName;
+import static com.gotech.accesscontrol.constant.Constants.for_;
+import static com.gotech.accesscontrol.constant.Constants.invalid;
+import static com.gotech.accesscontrol.constant.Constants.invalidContactNo;
+import static com.gotech.accesscontrol.constant.Constants.invalidEmailId;
+import static com.gotech.accesscontrol.constant.Constants.invalidFirstName;
+import static com.gotech.accesscontrol.constant.Constants.invalidLastName;
+import static com.gotech.accesscontrol.constant.Constants.invalidPassword;
+import static com.gotech.accesscontrol.constant.Constants.lastName;
+import static com.gotech.accesscontrol.constant.Constants.notDuplicate;
+import static com.gotech.accesscontrol.constant.Constants.notEmpty;
+import static com.gotech.accesscontrol.constant.Constants.password;
+import static com.gotech.accesscontrol.constant.Constants.valid;
+import static com.gotech.accesscontrol.constant.Constants.validMessage;
+import static com.gotech.accesscontrol.util.CommonUtil.isValidEmail;
+import static com.gotech.accesscontrol.util.CommonUtil.isValidMobileNo;
+import static com.gotech.accesscontrol.util.CommonUtil.isValidName;
+import static com.gotech.accesscontrol.util.CommonUtil.isValidPassword;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-
 
 @Component
 public class ValidateUser {
     @Autowired
     private UserRepo userRepo;
     private static final Logger validationlogger = Log4j2Config.getLoggerVariable("ValidateUser");
+
     public String isValid(User user) {
 
         String returnMessage = " ";
 
         if (isEmpty(user.getFirstName())
                 || isBlank(user.getFirstName())
-                || !CommonUtil.isValidName(user.getFirstName())) {
-            validationlogger.warn(Constants.invalid + Constants.firstName + Constants.for_ + user);
-            returnMessage = returnMessage + Constants.invalidFirstName;
+                || !isValidName(user.getFirstName())) {
+            validationlogger.warn(invalid + firstName + for_ + user);
+            returnMessage = returnMessage + invalidFirstName;
         }
         if (isEmpty(user.getLastName())
                 || isBlank(user.getLastName())
-                || !CommonUtil.isValidName(user.getLastName())) {
-            validationlogger.warn(Constants.invalid + Constants.lastName + Constants.for_ + user);
-            returnMessage = returnMessage + Constants.invalidLastName;
+                || !isValidName(user.getLastName())) {
+            validationlogger.warn(invalid + lastName + for_ + user);
+            returnMessage = returnMessage + invalidLastName;
         }
         if (isEmpty(user.getMobileNumber())
                 || isBlank(user.getMobileNumber())
-                || !CommonUtil.isValidMobileNo(user.getMobileNumber())) {
-            validationlogger.warn(Constants.invalid + Constants.contactNumber + Constants.for_ + user);
-            returnMessage = returnMessage + Constants.invalidContactNo;
+                || !isValidMobileNo(user.getMobileNumber())) {
+            validationlogger.warn(invalid + contactNumber + for_ + user);
+            returnMessage = returnMessage + invalidContactNo;
         }
         if (isEmpty(user.getEmailId())
                 || isBlank(user.getEmailId())
-                || !CommonUtil.isValidEmail(user.getEmailId())) {
-            validationlogger.warn(Constants.invalid + Constants.emailId + Constants.for_ + user);
-            returnMessage = returnMessage + Constants.invalidEmailId;
+                || !isValidEmail(user.getEmailId())) {
+            validationlogger.warn(invalid + emailId + for_ + user);
+            returnMessage = returnMessage + invalidEmailId;
         }
         if (isEmpty(user.getPassword())
                 || isBlank(user.getPassword())
-                || !CommonUtil.isValidPassword(user.getPassword())) {
-            validationlogger.warn(Constants.invalid + Constants.password + Constants.for_ + user);
-            returnMessage = returnMessage + Constants.invalidPassword;
+                || !isValidPassword(user.getPassword())) {
+            validationlogger.warn(invalid + password + for_ + user);
+            returnMessage = returnMessage + invalidPassword;
         }
         if (isEmpty(returnMessage) || isBlank(returnMessage)) {
-            validationlogger.info(Constants.validMessage + user);
-            returnMessage = Constants.valid;
+            validationlogger.info(validMessage + user);
+            returnMessage = valid;
         }
         return returnMessage;
     }
-
     public String isUserAlreadyExist(User user) {
         List<User> saveUser = userRepo.findUserByEmailAndMobileNumber(user.getEmailId(), user.getMobileNumber());
         if (!saveUser.isEmpty()) {
-            validationlogger.warn(Constants.duplicate + user);
-            return Constants.notEmpty;
+            validationlogger.warn(duplicate + user);
+            return notEmpty;
         } else {
-            validationlogger.info(Constants.notDuplicate + user);
-            return Constants.empty;
+            validationlogger.info(notDuplicate + user);
+            return empty;
         }
     }
 }
