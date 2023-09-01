@@ -1,10 +1,8 @@
 package com.gotech.accesscontrol.service;
 
-import com.gotech.accesscontrol.repository.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.gotech.accesscontrol.model.dto.Response;
+import com.gotech.accesscontrol.model.dto.UserRequest;
 
-public class UserService {
-
-    @Autowired
-    UserRepo userRepo;
+public interface UserService {
+    public Response saveUser(UserRequest userRequest);
 }
