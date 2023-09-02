@@ -1,4 +1,4 @@
-package com.gotech.accesscontrol;
+package com.gotech.accesscontrol.repository;
 
 import com.gotech.accesscontrol.Entity.User;
 import com.gotech.accesscontrol.constant.enums.UserType;
