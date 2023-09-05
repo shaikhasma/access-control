@@ -16,8 +16,8 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/signup
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: system
-    password: manager
+    username: root
+    password: root
     dialect: org.hibernate.dialect.MySQL8Dialect
   jpa:
     hibernate.ddl-auto: update

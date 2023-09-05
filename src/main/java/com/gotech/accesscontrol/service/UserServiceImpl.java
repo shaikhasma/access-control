@@ -12,7 +12,10 @@ import com.gotech.accesscontrol.util.ValidateUser;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.gotech.accesscontrol.util.CommonUtil.toUser;
 
@@ -25,16 +28,21 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ValidateUser validateUser;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     /**
      * validates & save user in system.
      */
     @Override
     public Response saveUser(UserRequest userRequest) {
         User user = toUser(userRequest);
-        if (this.userValidation(user).equals(Constants.valid)) {
-            userRepo.save(user);
-            serviceLogger.info("user saved successfully. " + user);
-        }
+
+       if (this.userValidation(user).equals(Constants.valid)) {
+           user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepo.save(user);
+        serviceLogger.info("user saved successfully. " + user);
+         }
         return new Response(HttpStatus.CREATED.toString(), "user created successfully. ");
     }
 
@@ -56,5 +64,9 @@ public class UserServiceImpl implements UserService {
             throw new InvalidUserException(validationMessage);
         }
         return validationMessage;
+    }
+
+    public List<User> getAll(){
+      return userRepo.findAll();
     }
 }
