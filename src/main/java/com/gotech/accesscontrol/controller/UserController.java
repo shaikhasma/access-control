@@ -8,27 +8,20 @@ import com.gotech.accesscontrol.model.dto.UserRequest;
 import com.gotech.accesscontrol.service.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.Model;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Api(value = "Services for user")
 @RestController
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
-
-
-  UserType userType;
 
   @Autowired
   private UserServiceImpl userServiceImpl;
@@ -53,12 +46,26 @@ public class UserController {
 
 
 
-//  @PreAuthorize("hasRole('ADMIN')")
+
   @ApiOperation("/get-all-users")
   @GetMapping("/get-all-users")
   public List<User> getAllUsers()
   {
     return userServiceImpl.getAll();
+  }
+
+//  @ApiOperation("/sign-in")
+//  @PostMapping("/sign-in")
+//  public Optional<User> getLoginData(@RequestParam(required = false) String emailormobile, @RequestParam String password){
+//    return userServiceImpl.getLoginData(emailormobile, password);
+//  }
+
+  @ApiOperation("/sign-in")
+  @PostMapping("/sign-in")
+  public User getLoginData(@RequestParam("identifier") String identifier, @RequestParam("password") String password) {
+    return userServiceImpl.getLoginData(identifier,password);
+
+
   }
 
 }

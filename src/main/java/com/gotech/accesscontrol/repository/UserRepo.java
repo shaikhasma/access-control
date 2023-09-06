@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Integer> {
@@ -15,7 +16,10 @@ public interface UserRepo extends JpaRepository<User, Integer> {
                     + "or (user.mobileNumber =:mobileNumber)")
     List<User> findUserByEmailAndMobileNumber(String emailId, String mobileNumber);
 
-    @Query("select u from User u where u.emailId = :emailId")
-    public User getUserByUserName(@Param("emailId") String emailId);
+
+    @Query(value = "SELECT * FROM txn_user u WHERE (u.email_id = :identifier OR u.mobile_number = :identifier) AND u.password = :password", nativeQuery = true)
+    User findByEmailOrMobileNumberAndPassword(@Param("identifier") String identifier, @Param("password") String password);
+
+
 
 }
