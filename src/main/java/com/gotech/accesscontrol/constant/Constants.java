@@ -26,7 +26,7 @@ public final class Constants {
             "every field of user should be valid. should not be empty / blank / null. ";
     public static final String firstName = "first name ";
     public static final String lastName = "last name ";
-    public static final String contactNumber = "contact number ";
+    public static final String mobileNumber = "mobile number ";
     public static final String emailId = "email id ";
     public static final String password = "password ";
     public static final String validMessage = "User is valid ";
@@ -37,6 +37,9 @@ public final class Constants {
     public static final String notEmpty = "not empty";
     public static final String invalid = "invalid ";
     public static final String for_ = "for : ";
+    public static final String saved = "user saved successfully. ";
+    public static final String created = "user created successfully. ";
+    public static final String userType = "user type ";
     public static final String emailPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
     public static final String mobileNoPattern = "^(\\+91[\\-\\s]?)?[0]?(91)?[789]\\d{9}$";
     public static final String namePattern = "^[a-zA-Z](?=.{0,19}$)[A-Za-z]*(?:\\h+[A-Z][A-Za-z]*)*$";
